@@ -244,14 +244,10 @@
 </div>
 
 <script>
-// ==========================================
-// 1. DADOS (PREPARADOS PARA AS IMAGENS)
-// O sistema tenta carregar 'assets/nome.png'. Se não achar, usa as iniciais.
-// ==========================================
 const MESSAGES = [
-  { id: 0, user: 'thedog', name: 'The Dog', time: '17:11', img: 'assets/thedog.png', text: '<span class="mention">@Joca</span> acha midia um sitezin dos mais picas do joca community?' },
+  { id: 0, user: 'thedog', name: 'The Dog', time: '17:11', img: 'assets/dog.png', text: '<span class="mention">@Joca</span> acha midia um sitezin dos mais picas do joca community?' },
   { id: 1, user: 'joca',   name: 'Joca',    time: '17:14', img: 'assets/joca.png',   text: 'acho' },
-  { id: 2, user: 'thedog', name: 'The Dog', time: '17:16', img: 'assets/thedog.png', text: 'cita 10 mais picas ai rankeados<br>se inclua entre eles' },
+  { id: 2, user: 'thedog', name: 'The Dog', time: '17:16', img: 'assets/dog.png', text: 'cita 10 mais picas ai rankeados<br>se inclua entre eles' },
   { id: 3, user: 'joca',   name: 'Joca',    time: '17:18', img: 'assets/joca.png',   text: 'eu', revealsCard: 0 },
   { id: 4, user: 'joca',   name: 'Joca',    time: '17:18', img: 'assets/joca.png',   text: 'você', revealsCard: 1 },
   { id: 5, user: 'joca',   name: 'Joca',    time: '17:18', img: 'assets/joca.png',   text: 'Samu', revealsCard: 2 },
@@ -266,7 +262,7 @@ const MESSAGES = [
 
 const MEMBERS = [
   { rank: 1,  name: 'Joca',    initials: 'JC', img: 'assets/joca.png',    desc: 'O fundador e rei absoluto.', aura: '👑 GOD TIER' },
-  { rank: 2,  name: 'The Dog', initials: 'TD', img: 'assets/thedog.png',  desc: 'O instigador de caos.', aura: '🐺 CHAOS AURA' },
+  { rank: 2,  name: 'The Dog', initials: 'TD', img: 'assets/dog.png',  desc: 'O instigador de caos.', aura: '🐺 CHAOS AURA' },
   { rank: 3,  name: 'Samu',    initials: 'SM', img: 'assets/samu.png',    desc: 'Presença implacável.', aura: '⚡ PRESENCE' },
   { rank: 4,  name: 'Blessed', initials: 'BL', img: 'assets/blessed.png', desc: 'Zé droguinha estraga resenha .', aura: '🌴 WEED AURA' },
   { rank: 5,  name: 'Xan',     initials: 'XN', img: 'assets/xanxan.png',     desc: 'estraga resenha.', aura: '🥷 SHADOW AURA' },
