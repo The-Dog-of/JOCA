@@ -25,35 +25,30 @@
   body, html {
     background-color: var(--bg-dark); color: var(--text-main);
     font-family: 'Rajdhani', sans-serif;
-    height: 100vh; overflow: hidden; /* Trava o scroll global */
+    height: 100vh; overflow: hidden; 
   }
 
-  /* SCROLLBAR CUSTOMIZADA */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: rgba(123,47,255,0.3); border-radius: 10px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--aura-joca); }
 
-  /* --- VFX CANVAS --- */
   #vfx-canvas {
     position: fixed; top: 0; left: 0;
     width: 100vw; height: 100vh;
     pointer-events: none; z-index: 999;
   }
 
-  /* --- AMBIENTE DE FUNDO --- */
   .bg-glow {
     position: fixed; border-radius: 50%; filter: blur(120px); opacity: 0.15; z-index: -1;
   }
   .glow-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--aura-joca); }
   .glow-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: var(--aura-dog); }
 
-  /* --- APP LAYOUT --- */
   #app {
     display: flex; height: 100vh; width: 100vw; padding: 20px; gap: 20px;
   }
 
-  /* --- CHAT COLUMN --- */
   .chat-section {
     flex: 1; max-width: 500px;
     background: var(--panel-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -76,7 +71,6 @@
     scroll-behavior: smooth;
   }
 
-  /* CHAT MESSAGES */
   .chat-msg {
     display: flex; flex-direction: column; opacity: 0;
     transform: translateY(20px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -88,7 +82,7 @@
   .msg-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
   .chat-msg.thedog .msg-header { flex-direction: row-reverse; }
 
-  /* AVATAR COM FALLBACK AUTOMÁTICO */
+
   .avatar-container {
     width: 40px; height: 40px; border-radius: 12px;
     background: #111; border: 2px solid transparent;
@@ -119,7 +113,7 @@
   }
   .mention { color: var(--aura-glow); font-weight: 700; text-shadow: 0 0 8px rgba(180,79,255,0.5); }
 
-  /* TYPING INDICATOR */
+
   .typing-indicator {
     display: none; align-items: center; gap: 5px; padding: 12px 18px;
     background: rgba(123,47,255,0.1); border-left: 3px solid var(--aura-joca);
@@ -131,7 +125,7 @@
   .dot:nth-child(3) { animation-delay: 0.4s; }
   @keyframes blink { 0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); } 40% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px var(--aura-glow); } }
 
-  /* CONTROLES FIXOS */
+
   .chat-controls {
     padding: 20px; border-top: 1px solid var(--panel-border); background: rgba(0,0,0,0.4);
     display: flex; gap: 10px; justify-content: center;
@@ -149,7 +143,7 @@
   .btn:disabled { opacity: 0.3; cursor: not-allowed; }
   .btn.auto-active { background: var(--aura-joca); color: #fff; font-weight: bold; border-color: var(--aura-glow); box-shadow: 0 0 20px rgba(123,47,255,0.5); }
 
-  /* --- CARDS COLUMN --- */
+
   .cards-section {
     flex: 2; position: relative;
     background: var(--panel-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -189,7 +183,7 @@
     background: var(--aura-glow); color: #000; padding: 3px 8px; border-radius: 4px; margin-top: 8px;
   }
 
-  /* Ranks Especiais */
+
   .rank-1 { border-color: rgba(255,207,64,0.3); box-shadow: inset 0 0 20px rgba(255,207,64,0.1), 0 10px 20px rgba(0,0,0,0.5); }
   .rank-1 .card-avatar-wrapper { border-color: var(--gold); box-shadow: 0 0 20px rgba(255,207,64,0.5); }
   .rank-1 .card-rank { color: rgba(255,207,64,0.3); }
@@ -273,9 +267,7 @@ const MEMBERS = [
   { rank: 10, name: 'Tanlugi', initials: 'TL', img: 'assets/tanlugi.png', desc: 'amigo fofinho de todos.', aura: '🛡️ ELITE GUARD' },
 ];
 
-// ==========================================
-// 2. SISTEMA DE FUMAÇA MÁGICA (CANVAS VFX)
-// ==========================================
+
 const canvas = document.getElementById('vfx-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -287,17 +279,17 @@ resize();
 class SmokeParticle {
   constructor(x, y, colorStr) {
     this.x = x; this.y = y;
-    this.vx = (Math.random() - 0.5) * 8; // Velocidade expansão
+    this.vx = (Math.random() - 0.5) * 8; 
     this.vy = (Math.random() - 0.5) * 8;
     this.size = Math.random() * 20 + 10;
     this.maxSize = this.size + Math.random() * 60 + 40;
-    this.life = 1; // Opacidade 1.0 -> 0.0
+    this.life = 1; 
     this.decay = Math.random() * 0.02 + 0.015;
-    this.colorStr = colorStr; // ex: '123, 47, 255'
+    this.colorStr = colorStr; 
   }
   update() {
     this.x += this.vx; this.y += this.vy;
-    this.size += 2; // Expande como fumaça
+    this.size += 2; 
     this.life -= this.decay;
   }
   draw() {
@@ -329,16 +321,12 @@ function triggerSmokeExplosion(x, y, colorStr = '180, 79, 255') {
   }
 }
 
-// ==========================================
-// 3. LÓGICA DE INTERFACE (CHAT E CARDS)
-// ==========================================
 let step = -1;
 let autoPlaying = false;
 let autoTimer = null;
 const historyEl = document.getElementById('chat-history');
 const typingBox = document.getElementById('typing-box');
 
-// Função de Avatar Universal com Fallback Automático CSS
 function createAvatarHTML(imgSrc, initials) {
   return `
     <div class="avatar-container">
@@ -353,7 +341,7 @@ function scrollToBottom() {
 }
 
 function renderMessage(msg) {
-  // Oculta typing box momentaneamente
+
   typingBox.style.display = 'none';
 
   const div = document.createElement('div');
@@ -406,29 +394,25 @@ function renderCardComFumaca(idx) {
   
   list.appendChild(div);
 
-  // EFEITO DE FUMAÇA -> REVELAÇÃO DO CARD
-  // Espera o DOM calcular o layout do card recém adicionado (opacidade 0 ainda)
+
   setTimeout(() => {
     const rect = div.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    // Dispara a fumaça no centro exato do card
+
     const color = m.rank === 1 ? '255, 207, 64' : (m.rank === 2 ? '255, 42, 75' : '180, 79, 255');
     triggerSmokeExplosion(centerX, centerY, color);
-    
-    // Faz o card pular da fumaça
+
     setTimeout(() => {
       div.classList.add('visible');
-      // Scrolla o painel de cards para o novo card suavemente
+
       div.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }, 200); // Aparece no ápice da explosão
+    }, 200); 
   }, 50);
 }
 
-// ==========================================
-// 4. CONTROLE DE FLUXO (NEXT, PREV, AUTO)
-// ==========================================
+
 function updateButtons() {
   document.getElementById('btn-prev').disabled = step < 0;
   document.getElementById('btn-next').disabled = step >= MESSAGES.length - 1;
@@ -441,7 +425,7 @@ function showTypingAndProceed(msg) {
     setTimeout(() => {
       renderMessage(msg);
       checkCardReveal(msg);
-    }, 800); // Tempo fingindo que digita
+    }, 800); 
   } else {
     renderMessage(msg);
     checkCardReveal(msg);
@@ -466,15 +450,13 @@ function stepForward() {
 function stepBack() {
   if (step < 0) return;
   const msg = MESSAGES[step];
-  
-  // Remove msg do DOM
+
   const msgEl = document.getElementById(`msg-${msg.id}`);
   if (msgEl) {
     msgEl.classList.remove('visible');
     setTimeout(() => msgEl.remove(), 400);
   }
-  
-  // Remove Card se existir
+
   if (msg.revealsCard !== undefined) {
     const cardEl = document.getElementById(`card-${msg.revealsCard}`);
     if (cardEl) {
@@ -485,7 +467,7 @@ function stepBack() {
   
   step--;
   updateButtons();
-  typingBox.style.display = 'none'; // Reseta o typing
+  typingBox.style.display = 'none'; 
 }
 
 function toggleAuto() {
@@ -509,9 +491,9 @@ function runAuto() {
     return;
   }
   
-  // Calcula tempo baseado se vai ter revelação de card
+
   const proxMsg = MESSAGES[step + 1];
-  const delay = proxMsg.user === 'joca' ? 2200 : 1500; // Tempo até o próximo passo
+  const delay = proxMsg.user === 'joca' ? 2200 : 1500; 
   
   stepForward();
   autoTimer = setTimeout(runAuto, delay);
